@@ -1,5 +1,11 @@
 import greenfoot.*;  // (Actor, World, Greenfoot, GreenfootImage)
 
+/**
+ * Write a description of class CrabWorld here.
+ * 
+ * @author Leon Namowitz 
+ * @version (a version number or a date)
+ */
 public class CrabWorld extends World
 {
     /**
