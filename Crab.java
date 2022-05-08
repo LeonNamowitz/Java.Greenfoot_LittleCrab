@@ -7,12 +7,26 @@ import greenfoot.*;
  * @version (a version number or a date)
  */
 public class Crab extends Actor
-{
+{   
+    private int wormsEaten;
+
+    /**
+     * Constructor
+     */
+    public Crab()
+    {
+
+    }
+
+
+
+
     public void act()
     {
         inputCheck();
         eatWorm();
         move(3);
+        gameFinish();
     }
 
     public void inputCheck()
@@ -36,9 +50,16 @@ public class Crab extends Actor
     {
         if (isTouching(Worm.class) == true) {
             removeTouching(Worm.class);
+            wormsEaten++;
         }
     }
     
+    public void gameFinish()
+    {
+        if (wormsEaten == CrabWorld.wormAmount) {
+            Greenfoot.stop();
+        }
+    }
 }
 
 

@@ -8,6 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Worm extends Actor
 {
+    private int wormIndex;
+
+    /**
+     * Constructor
+     */
+    public Worm(int index)
+    {
+        wormIndex = index;
+    }
+
     /**
      * This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.
      */

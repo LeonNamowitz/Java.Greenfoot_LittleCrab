@@ -1,9 +1,14 @@
 #BlueJ class context
 comment0.target=CrabWorld
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ CrabWorld\ here.\r\n\ \r\n\ @author\ Leon\ Namowitz\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ CrabWorld\ here.\r\n\ \r\n\ @author\ Leon\ Namowitz\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
 comment1.target=CrabWorld()
-comment1.text=\r\n\ Create\ the\ crab\ world\ (the\ beach).\ Our\ world\ has\ a\ size\ \r\n\ of\ 600x600\ cells,\ where\ every\ cell\ is\ just\ 1\ pixel.\r\n
+comment1.text=\r\n\ Create\ the\ crab\ world\ (the\ beach).\ Our\ world\ has\ a\ size\r\n\ of\ 600x600\ cells,\ where\ every\ cell\ is\ just\ 1\ pixel.\r\n
 comment2.params=
 comment2.target=void\ populate()
-numComments=3
+comment3.params=
+comment3.target=void\ spawnWorms()
+comment4.params=input
+comment4.target=int\ generator(java.lang.String)
+comment4.text=\r\n\ Generates\ random\ numbers\ based\ on\ the\ type\ of\ need\ (input\ String).\r\n
+numComments=5
