@@ -43,7 +43,7 @@ public class Crab extends Actor
     }
 
     // Deprecated
-    
+
     // public void wormCheck()
     //     {
     //         if (isTouching(Worm.class)) {
@@ -64,7 +64,8 @@ public class Crab extends Actor
     public void gameFinish()
     {
         if (wormsEaten == CrabWorld.wormAmount) {
-            Greenfoot.stop();
+            CrabWorld.gameOver();
+            // Greenfoot.stop();
         }
     }
 }

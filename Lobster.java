@@ -32,7 +32,6 @@ public class Lobster extends Actor
         // randomMove();
         naturalMove();
         eatCrab();
-        // move(3);
     }
 
     /**
