@@ -18,7 +18,7 @@ public class Crab extends Actor
     public Crab(int lives)
     {
         crabSpeed = 3;
-        crabSpeed = lives;
+        crabLives = lives;
         wormsEaten = 0;
 
     }
@@ -46,22 +46,22 @@ public class Crab extends Actor
             move(-crabSpeed);
     }
 
-    // Deprecated
 
-    // public void wormCheck()
-    //     {
-    //         if (isTouching(Worm.class)) {
-    //             removeTouching(Worm.class);
-                
-    //         }
-    //     }
-
+    /**
+     * Removes the worm and increases the Score.
+     * You need to "typecast" (inform the compiler) where it can find the method of the subclass of the World.
+     * Alternatively: ((CrabWorld)getWorld()).increaseScoreCounter(); 
+     */
     public void eatWorm()
     {
+        
         if (isTouching(Worm.class) == true) {
             removeTouching(Worm.class);
-            Score.score++;
+            CrabWorld crabWorld = (CrabWorld) getWorld();
+            crabWorld.increaseScoreCounter();
             wormsEaten++;
+            
+            // getWorld().addObject(new Counter(1), 10, 10);    //Why is this working??
         }
     }  
     

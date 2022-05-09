@@ -12,9 +12,12 @@ public class CrabWorld extends World {
     private static int amount = 8;
     public static int wormAmount = 5;
     public static int lobsterAmount = 2;
+    public int scoreValue;
+    public int livesValue;
 
-    Score score = new Score();
+    Counter score = new Counter(scoreValue);
     Crab crab = new Crab(3);
+    Counter lives = new Counter(livesValue);
 
     /**
      * Create the crab world (the beach). Our world has a size
@@ -22,7 +25,7 @@ public class CrabWorld extends World {
      */
     public CrabWorld() {
         super(worldWidth, worldHeight, 1);
-        setPaintOrder(Crab.class, Lobster.class, Worm.class, Score.class); // draw order
+        setPaintOrder(Crab.class, Lobster.class, Worm.class, Counter.class); // draw order
         populate();
 
     }
@@ -30,7 +33,7 @@ public class CrabWorld extends World {
 
     public void act()
     {
-        score.updateScore();
+        score.updateCounter(scoreValue);
         if (crab.wormsEaten == wormAmount)  {
             score.gameFinish();
         }
@@ -43,7 +46,8 @@ public class CrabWorld extends World {
         addObject(crab, 250, 250);
         spawnWorms();
         spawnLobsters();
-        spawnCounter();
+        spawnScoreCounter();
+        spawnLivesCounter();
 
 
         // System.out.println(worldWidth);
@@ -64,11 +68,29 @@ public class CrabWorld extends World {
         }
     }
 
-    public void spawnCounter()
+    public void spawnScoreCounter()
     {
+        // Score score = new Score(0);
         crab.wormsEaten = 0;
-        Score.score = 0;
+        // score.value = 0;
         addObject(score, 50, 20);
+    }
+
+    public void increaseScoreCounter()
+    {
+        scoreValue++;
+    }
+
+    public void spawnLivesCounter()
+    {
+        // Score lives = new Score(3);
+        // lives.value = 0;
+        addObject(lives, getWidth() - 50, 20);
+    }
+
+    public void nextLive()
+    {
+        addObject(new Crab(crab.crabLives-1), getWidth()/2, getHeight()/2);
     }
 
     /**
@@ -82,7 +104,6 @@ public class CrabWorld extends World {
             }
         }
     }
-
 
     /**
      * Generates random numbers based on the type of need (input String).

@@ -1,15 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Score here.
+ * Write a description of class Counter here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Score extends Actor
+public class Counter extends Actor
 {
-    public static int score = 0;
+    int value = 0;
 
+    public Counter(int value)
+    {
+        value = 0;
+    }
     /**
      * This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.
      */
@@ -28,8 +32,8 @@ public class Score extends Actor
         Greenfoot.stop();
     }
 
-    public void updateScore()
+    public void updateCounter(int newScore)
     {
-        setImage(new GreenfootImage("Score: " + score, 24, Color.WHITE, Color.BLACK));
+        setImage(new GreenfootImage("Score: " + newScore, 24, Color.WHITE, Color.BLACK));
     }
 }
