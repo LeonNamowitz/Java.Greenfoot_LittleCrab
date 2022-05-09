@@ -8,16 +8,19 @@ import greenfoot.*;
  */
 public class Crab extends Actor
 {   
-    public static int wormsEaten;
-    public static int speed = 3;
-    public static int lives = 3;
+    public int wormsEaten;
+    public int crabSpeed;
+    public int crabLives;
 
     /**
      * Constructor
      */
-    public Crab()
+    public Crab(int lives)
     {
-        
+        crabSpeed = 3;
+        crabSpeed = lives;
+        wormsEaten = 0;
+
     }
 
     
@@ -37,10 +40,10 @@ public class Crab extends Actor
             turn(4);
         
         if (Greenfoot.isKeyDown("up"))
-            move(speed);
+            move(crabSpeed);
         
         if (Greenfoot.isKeyDown("down"))
-            move(-speed);
+            move(-crabSpeed);
     }
 
     // Deprecated

@@ -13,6 +13,9 @@ public class CrabWorld extends World {
     public static int wormAmount = 5;
     public static int lobsterAmount = 2;
 
+    Score score = new Score();
+    Crab crab = new Crab(3);
+
     /**
      * Create the crab world (the beach). Our world has a size
      * of 600x600 cells, where every cell is just 1 pixel.
@@ -27,13 +30,16 @@ public class CrabWorld extends World {
 
     public void act()
     {
-        // showText("Score: " + score, 100, 100);
+        score.updateScore();
+        if (crab.wormsEaten == wormAmount)  {
+            score.gameFinish();
+        }
+
     }
 
 
-    public void populate() {
-
-        Crab crab = new Crab();
+    public void populate() 
+    {
         addObject(crab, 250, 250);
         spawnWorms();
         spawnLobsters();
@@ -60,9 +66,9 @@ public class CrabWorld extends World {
 
     public void spawnCounter()
     {
-        Crab.wormsEaten = 0;
+        crab.wormsEaten = 0;
         Score.score = 0;
-        addObject(new Score(), 50, 20);
+        addObject(score, 50, 20);
     }
 
     /**

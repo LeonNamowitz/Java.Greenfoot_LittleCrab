@@ -15,8 +15,8 @@ public class Score extends Actor
      */
     public void act()
     {
-        setImage(new GreenfootImage("Score: " + score, 24, Color.WHITE, Color.BLACK));
-        gameFinish();
+        // setImage(new GreenfootImage("Score: " + score, 24, Color.WHITE, Color.BLACK));
+        // gameFinish();
         
     }
 
@@ -25,9 +25,11 @@ public class Score extends Actor
      */
     public void gameFinish()
     {
-        if (Crab.wormsEaten == CrabWorld.wormAmount) {
-            CrabWorld.gameOver();
-            Greenfoot.stop();
-        }
+        Greenfoot.stop();
+    }
+
+    public void updateScore()
+    {
+        setImage(new GreenfootImage("Score: " + score, 24, Color.WHITE, Color.BLACK));
     }
 }

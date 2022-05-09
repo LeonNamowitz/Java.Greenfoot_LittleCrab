@@ -76,15 +76,17 @@ public class Lobster extends Actor
     
     public void eatCrab()
     {
-        if (isTouching(Crab.class) == true && Crab.lives > 0 ) {
+        Crab crab = new Crab(1);
+        if (isTouching(Crab.class) == true && crab.crabLives > 0 ) {
             removeTouching(Crab.class);
             CrabWorld.gameOver();   // not implemented yet
             Greenfoot.stop();
         }
-        else if (isTouching(Crab.class) == true && Crab.lives == 0 )    {
+        else if (isTouching(Crab.class) == true && crab.crabLives == 0 )    {
             removeTouching(Crab.class);
             CrabWorld.gameOver();   // not implemented yet
-            Greenfoot.stop();        }
+            Greenfoot.stop();       
+        }
     }  
 }
 
