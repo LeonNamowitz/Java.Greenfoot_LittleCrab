@@ -102,12 +102,16 @@ public class CrabWorld extends World {
             int returnRotation = Greenfoot.getRandomNumber(360);
             return(returnRotation);
         }
+        else if (input == "turning")    {
+            int returnTurning = Greenfoot.getRandomNumber(40);
+            return(returnTurning - 20);
+        }
         return(0);
     }
 
-    public void gameOver()
+    public static void gameOver()
     {
-        GreenfootImage
+        
     }
 
 }

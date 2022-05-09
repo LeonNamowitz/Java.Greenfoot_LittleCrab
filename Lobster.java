@@ -23,19 +23,26 @@ public class Lobster extends Actor
         // System.out.println(moveTime);
     }
 
-    
+
     /**
      * This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
-        randomMove();
+        // randomMove();
+        naturalMove();
         eatCrab();
         // move(3);
     }
 
+    /**
+     * Random Movement
+     */
     public void randomMove()
     {
+        if (isAtEdge() == true) {
+            turn(20);
+        }
         if (moveSteps < moveTime) {
             move(2);
             moveSteps++;
@@ -48,6 +55,26 @@ public class Lobster extends Actor
         }
     }
 
+    /**
+     * Semi Natural Movement
+     */
+    public void naturalMove()
+    {
+        if (isAtEdge() == true) {
+                turn(20);
+        }
+        if (moveSteps < moveTime) {
+            move(2);
+            moveSteps++;
+            
+        }
+        else if (moveSteps == moveTime)   {
+            turn(CrabWorld.generator("turning"));
+            moveSteps = 0;
+            moveTime = CrabWorld.generator("lobsterMoveTime");
+        }  
+    }
+    
     public void eatCrab()
     {
         if (isTouching(Crab.class) == true) {
