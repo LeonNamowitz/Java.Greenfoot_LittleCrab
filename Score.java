@@ -16,6 +16,18 @@ public class Score extends Actor
     public void act()
     {
         setImage(new GreenfootImage("Score: " + score, 24, Color.WHITE, Color.BLACK));
+        gameFinish();
         
+    }
+
+    /**
+     * Checks if all the Worms have been eaten and ends the Game.
+     */
+    public void gameFinish()
+    {
+        if (Crab.wormsEaten == CrabWorld.wormAmount) {
+            CrabWorld.gameOver();
+            Greenfoot.stop();
+        }
     }
 }

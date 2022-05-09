@@ -60,6 +60,7 @@ public class CrabWorld extends World {
 
     public void spawnCounter()
     {
+        Crab.wormsEaten = 0;
         Score.score = 0;
         addObject(new Score(), 50, 20);
     }

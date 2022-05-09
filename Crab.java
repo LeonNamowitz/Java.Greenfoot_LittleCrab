@@ -8,15 +8,16 @@ import greenfoot.*;
  */
 public class Crab extends Actor
 {   
-    private int wormsEaten;
+    public static int wormsEaten;
     public static int speed = 3;
+    public static int lives = 3;
 
     /**
      * Constructor
      */
     public Crab()
     {
-
+        
     }
 
     
@@ -24,7 +25,7 @@ public class Crab extends Actor
     {
         inputCheck();
         eatWorm();
-        gameFinish();
+        
     }
 
     public void inputCheck()
@@ -61,13 +62,6 @@ public class Crab extends Actor
         }
     }  
     
-    public void gameFinish()
-    {
-        if (wormsEaten == CrabWorld.wormAmount) {
-            CrabWorld.gameOver();
-            // Greenfoot.stop();
-        }
-    }
 }
 
 
