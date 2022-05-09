@@ -8,11 +8,53 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Lobster extends Actor
 {
+    private int lobsterIndex;
+    private int defaultRotation;
+    private int moveSteps = 0;
+    private int moveTime = CrabWorld.generator("lobsterMoveTime");
+
+    /**
+     * Constructor
+     */
+    public Lobster(int index, int defaultRotation)
+    {
+        lobsterIndex = index;
+        setRotation(defaultRotation);
+        // System.out.println(moveTime);
+    }
+
+    
     /**
      * This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
-        // Add your action code here.
+        randomMove();
+        eatCrab();
+        // move(3);
     }
+
+    public void randomMove()
+    {
+        if (moveSteps < moveTime) {
+            move(2);
+            moveSteps++;
+            
+        }
+        else if (moveSteps == moveTime)   {
+            setRotation(CrabWorld.generator("rotation"));
+            moveSteps = 0;
+            moveTime = CrabWorld.generator("lobsterMoveTime");
+        }
+    }
+
+    public void eatCrab()
+    {
+        if (isTouching(Crab.class) == true) {
+            removeTouching(Crab.class);
+            CrabWorld.gameOver();
+            Greenfoot.stop();
+        }
+    }  
 }
+

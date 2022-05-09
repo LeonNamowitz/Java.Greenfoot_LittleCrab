@@ -1,0 +1,6 @@
+* spawn more crabs after score
+
+* eating worms increases score
+* end when Crab == dead
+
+** > level system

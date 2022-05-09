@@ -1,29 +1,21 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Worm here.
+ * Write a description of class Score here.
  * 
- * @author Leon Namowitz 
+ * @author (your name) 
  * @version (a version number or a date)
  */
-public class Worm extends Actor
+public class Score extends Actor
 {
-    private int wormIndex;
+    public static int score = 0;
 
-    /**
-     * Constructor
-     */
-    public Worm(int index)
-    {
-        wormIndex = index;
-    }
-
-    
     /**
      * This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
-        // Add your action code here.
+        setImage(new GreenfootImage("Score: " + score, 24, Color.WHITE, Color.BLACK));
+        
     }
 }
