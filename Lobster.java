@@ -96,6 +96,7 @@ public class Lobster extends Actor
             removeTouching(Crab.class);
             CrabWorld crabWorld = (CrabWorld) getWorld();
             crabWorld.decreaseLivesCounter();
+            crabWorld.changeScoreCounter(-150);
             crabWorld.addObject(new Crab(crab.crabLives-1), this.getX(), this.getY());
             delayTimer.mark();  // Starts Timer
         }

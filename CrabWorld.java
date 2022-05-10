@@ -88,18 +88,19 @@ public class CrabWorld extends World {
     public void spawnScoreCounter()
     {
         Crab.wormsEaten = 0;
-        addObject(score, 50, 20);
+        addObject(score, 80, 20);
     }
 
-    public void increaseScoreCounter()
+    public void changeScoreCounter(int value)
     {
-        scoreValue++;
+        scoreValue += value;
     }
+
 
     public void spawnLivesCounter()
     {
         // crab.crabLives = livesValue;
-        addObject(lives, getWidth() - 50, 20);
+        addObject(lives, getWidth() - 60, 20);
     }
 
     public void decreaseLivesCounter()
@@ -172,11 +173,11 @@ public class CrabWorld extends World {
     public static int generator(String input)
     {
         if (input == "Width")   {
-            int randomX = Greenfoot.getRandomNumber((worldWidth)+1);
+            int randomX = (Greenfoot.getRandomNumber(worldWidth)+1);
             return(randomX);
         }
         else if (input == "Height") {
-            int randomY = Greenfoot.getRandomNumber((worldHeight)+1);
+            int randomY = (Greenfoot.getRandomNumber(worldHeight-40)+40);
             return(randomY);
         }
         else if (input == "Amount") {

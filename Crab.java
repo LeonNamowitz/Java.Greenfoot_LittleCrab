@@ -64,7 +64,7 @@ public class Crab extends Actor
         if (isTouching(Worm.class) == true) {
             removeTouching(Worm.class);
             CrabWorld crabWorld = (CrabWorld) getWorld();
-            crabWorld.increaseScoreCounter();
+            crabWorld.changeScoreCounter(+50);
             Crab.wormsEaten++;
             // System.out.println(Crab.wormsEaten);
             // getWorld().addObject(new Counter(1), 10, 10);    //Why is this working??
