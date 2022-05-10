@@ -4,3 +4,9 @@
 * different score for eating or death
 
 ** > level system
+
+
+BUGS
+
+* game won't stop if all Worms get eaten after lives have been lost ?!?
+	wormsEaten is not static -> recreated which each life

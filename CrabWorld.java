@@ -36,7 +36,7 @@ public class CrabWorld extends World {
         score.updateScoreCounter(scoreValue);
         lives.updateLivesCounter(livesValue);
         if (crab.wormsEaten == wormAmount)  {
-            score.gameFinish();
+            Greenfoot.stop();
         }
 
     }

@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public class Crab extends Actor
 {   
-    public int wormsEaten;
+    public int wormsEaten = 0;
     public int crabSpeed;
     public int crabLives;
 

@@ -14,7 +14,7 @@ public class Lobster extends Actor
     private int defaultRotation;
     private int moveSteps = 0;
     private int moveTime = CrabWorld.generator("lobsterMoveTime");
-    private static int respawnDelay = 3;
+    private static int respawnDelay;
 
     /**
      * Constructor
@@ -108,7 +108,7 @@ public class Lobster extends Actor
                 CrabWorld crabWorld = (CrabWorld) getWorld();
                 crabWorld.decreaseLivesCounter();
                 crabWorld.addObject(new Crab(crab.crabLives-1), this.getX(), this.getY());
-                respawnDelay = 400;
+                respawnDelay = 150;
                 // System.out.println(respawnDelay);
                 // Greenfoot.stop();
             }
