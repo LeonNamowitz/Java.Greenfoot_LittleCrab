@@ -37,7 +37,7 @@ public class Lobster extends Actor
         // randomMove();
         naturalMove();
         eatCrab();
-        System.out.println(delayTimer.millisElapsed());
+        // System.out.println(delayTimer.millisElapsed());
 
     }
 
