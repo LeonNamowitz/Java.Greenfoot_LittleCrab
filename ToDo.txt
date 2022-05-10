@@ -1,12 +1,12 @@
-* spawn more crabs after score
 
-* 
+
+* Scoring system
 * different score for eating or death
+* 
+* Game endscreen with highscore ?
 
-** > level system
 
 
 BUGS
 
-* game won't stop if all Worms get eaten after lives have been lost ?!?
-	wormsEaten is not static -> re-created which each life
+* 

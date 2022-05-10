@@ -1,4 +1,4 @@
-import greenfoot.*;
+    import greenfoot.*;
 
 /**
  * Write a description of class Crab here.
@@ -15,10 +15,11 @@ public class Crab extends Actor
     /**
      * Constructor
      */
-    public Crab(int lives)
+    public Crab(int lives, int rotation)
     {
         crabSpeed = 3;
         crabLives += lives;
+        setRotation(rotation);
         // wormsEaten = 0;
 
     }
@@ -64,7 +65,7 @@ public class Crab extends Actor
         if (isTouching(Worm.class) == true) {
             removeTouching(Worm.class);
             CrabWorld crabWorld = (CrabWorld) getWorld();
-            crabWorld.increaseScoreCounter();
+            crabWorld.changeScoreCounter(+50);
             Crab.wormsEaten++;
             // System.out.println(Crab.wormsEaten);
             // getWorld().addObject(new Counter(1), 10, 10);    //Why is this working??

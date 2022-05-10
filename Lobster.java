@@ -91,15 +91,20 @@ public class Lobster extends Actor
     {
         Crab crab = (Crab) getOneIntersectingObject(Crab.class);
         
-        // 2 Second delay on respawn, independent for each Crab.
-        if (isTouching(Crab.class) == true && crab.crabLives > 0 && delayTimer.millisElapsed() > 1500 ) {
+        // 1,8 Second delay on respawn, independent for each Crab.
+        if (isTouching(Crab.class) == true && crab.crabLives > 0 && delayTimer.millisElapsed() > 1800 ) {
+            int lastRotation = crab.getRotation();
+            int lastX = crab.getX();
+            int lastY = crab.getY();
             removeTouching(Crab.class);
             CrabWorld crabWorld = (CrabWorld) getWorld();
             crabWorld.decreaseLivesCounter();
-            crabWorld.addObject(new Crab(crab.crabLives-1), this.getX(), this.getY());
+            crabWorld.changeScoreCounter(-150);
+            Greenfoot.delay(60);
+            crabWorld.addObject(new Crab((crab.crabLives-1), lastRotation), lastX, lastY);
             delayTimer.mark();  // Starts Timer
         }
-        else if (isTouching(Crab.class) == true && crab.crabLives == 0 && delayTimer.millisElapsed() > 1500 )    {
+        else if (isTouching(Crab.class) == true && crab.crabLives == 0 && delayTimer.millisElapsed() > 1800 )    {
             removeTouching(Crab.class);
             CrabWorld.gameOver();   // not implemented yet
             Greenfoot.stop();       
