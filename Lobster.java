@@ -15,6 +15,8 @@ public class Lobster extends Actor
     private int moveSteps = 0;
     private int moveTime = CrabWorld.generator("lobsterMoveTime");
     private static int respawnDelay = 3;
+    SimpleTimer timer = new SimpleTimer();
+
 
     /**
      * Constructor
@@ -37,6 +39,8 @@ public class Lobster extends Actor
         eatCrab();
         decreaseRespawnDelay();
         // System.out.println(respawnDelay);
+        System.out.println((timer.millisElapsed()));
+
     }
 
     /**
@@ -101,16 +105,16 @@ public class Lobster extends Actor
     public void eatCrab()
     {
         Crab crab = (Crab) getOneIntersectingObject(Crab.class);
-
-        if (respawnDelay == 0)   {
+        timer.mark();
+        if (timer.millisElapsed() < 2000)   {
+            timer.mark();
             if (isTouching(Crab.class) == true && crab.crabLives > 0 ) {
                 removeTouching(Crab.class);
                 CrabWorld crabWorld = (CrabWorld) getWorld();
                 crabWorld.decreaseLivesCounter();
-                crabWorld.addObject(new Crab(crab.crabLives-1), this.getX(), this.getY());
-                respawnDelay = 400;
-                System.out.println(respawnDelay);
-                // Greenfoot.stop();
+                crabWorld.addObject(new Crab(crab.crabLives-1), this.getX(), this.getY()+100);
+                // respawnDelay = 400;
+                timer.mark();
             }
             else if (isTouching(Crab.class) == true && crab.crabLives == 0 )    {
                 removeTouching(Crab.class);
