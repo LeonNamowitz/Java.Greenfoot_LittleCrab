@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Lobster
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Lobster\ here.\r\n\ \r\n\ @author\ Leon\ Namowitz\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=index\ defaultRotation
+comment1.params=index\ rotation
 comment1.target=Lobster(int,\ int)
 comment1.text=\r\n\ Constructor\r\n
 comment2.params=
@@ -14,9 +14,6 @@ comment4.params=
 comment4.target=void\ naturalMove()
 comment4.text=\r\n\ Semi\ Natural\ Movement\r\n
 comment5.params=
-comment5.target=void\ decreaseRespawnDelay()
-comment5.text=\r\n\ Jank\ invinciblility\ after\ respawn.\ Based\ on\ act()\ calls,\ therefore\ dependent\ on\ speed\ slider.\r\n
-comment6.params=
-comment6.target=void\ eatCrab()
-comment6.text=\r\n\ Removes\ the\ Crab\ and\ decreases\ the\ Lives\ of\ the\ player.\r\n\ You\ need\ to\ "typecast"\ (inform\ the\ compiler)\ where\ it\ can\ find\ the\ method\ of\ the\ subclass\ of\ the\ World.\r\n\ typcast\ the\ current\ Crab\ object\ into\ the\ Crab\ variable\ crab\ to\ check\ the\ current\ lives.\ (I\ think..)\r\n\ Score\ and\ Lives\ variables\ are\ held\ in\ CrabWorld.\ \r\n
-numComments=7
+comment5.target=void\ eatCrab()
+comment5.text=\r\n\ Removes\ the\ Crab\ and\ decreases\ the\ Lives\ of\ the\ player.\r\n\ You\ need\ to\ "typecast"\ (inform\ the\ compiler)\ where\ it\ can\ find\ the\ method\ of\ the\ subclass\ of\ the\ World.\r\n\ typcast\ the\ current\ Crab\ object\ into\ the\ Crab\ variable\ crab\ to\ check\ the\ current\ lives.\ (I\ think..)\r\n\ Score\ and\ Lives\ variables\ are\ held\ in\ CrabWorld.\ \r\n\ 1,5\ seconds\ invincible\ after\ (re)spawning.\r\n
+numComments=6

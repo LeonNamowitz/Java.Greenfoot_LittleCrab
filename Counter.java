@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.text.DecimalFormat;
 
 /**
  * Write a description of class Counter here.
@@ -9,6 +10,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Counter extends Actor
 {
     int value = 0;
+    DecimalFormat timeFormat = new DecimalFormat("0.00");
 
     public Counter(int value)
     {
@@ -22,13 +24,6 @@ public class Counter extends Actor
         // Counter updating happens in CrabWorld act() method.        
     }
 
-    /**
-     * Checks if all the Worms have been eaten and ends the Game.
-     */
-    public void gameFinish()
-    {
-        Greenfoot.stop();
-    }
 
     public void updateScoreCounter(int newScore)
     {
@@ -38,5 +33,10 @@ public class Counter extends Actor
     public void updateLivesCounter(int newLives)
     {
         setImage(new GreenfootImage("Lives: " + newLives, 24, Color.GREEN, Color.BLACK));
+    }
+
+    public void updateTimeCounter(double newTime)
+    {
+        setImage(new GreenfootImage("Time: " + timeFormat.format(newTime) + " s", 24, Color.WHITE, Color.DARK_GRAY ));
     }
 }

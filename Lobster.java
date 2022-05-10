@@ -1,5 +1,4 @@
-import java.io.ObjectInputStream.GetField;
-
+// import java.io.ObjectInputStream.GetField;
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -11,20 +10,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Lobster extends Actor
 {
     private int lobsterIndex;
-    private int defaultRotation;
     private int moveSteps = 0;
     private int moveTime = CrabWorld.generator("lobsterMoveTime");
-    private static int respawnDelay = 3;
+    public static int speed = 2;
     SimpleTimer delayTimer = new SimpleTimer();
 
 
     /**
      * Constructor
      */
-    public Lobster(int index, int defaultRotation)
+    public Lobster(int index, int rotation)
     {
         lobsterIndex = index;
-        setRotation(defaultRotation);
+        setRotation(rotation);
         // System.out.println(moveTime);
     }
 
@@ -50,7 +48,7 @@ public class Lobster extends Actor
             turn(20);
         }
         if (moveSteps < moveTime) {
-            move(2);
+            move(speed);
             moveSteps++;
             
         }
@@ -70,7 +68,7 @@ public class Lobster extends Actor
                 turn(20);
         }
         if (moveSteps < moveTime) {
-            move(2);
+            move(speed);
             moveSteps++;
             
         }
@@ -81,38 +79,27 @@ public class Lobster extends Actor
         }  
     }
 
-    /**
-     * Jank invinciblility after respawn. Based on act() calls, therefore dependent on speed slider.
-     */
-    private void decreaseRespawnDelay()
-    {
-        if (respawnDelay > 0)  {
-            respawnDelay--;
-        }
-        else if (respawnDelay == 0) {
-            
-        }
-    }
     
     /**
      * Removes the Crab and decreases the Lives of the player.
      * You need to "typecast" (inform the compiler) where it can find the method of the subclass of the World.
      * typcast the current Crab object into the Crab variable crab to check the current lives. (I think..)
      * Score and Lives variables are held in CrabWorld. 
+     * 1,5 seconds invincible after (re)spawning.
      */
     public void eatCrab()
     {
         Crab crab = (Crab) getOneIntersectingObject(Crab.class);
         
         // 2 Second delay on respawn, independent for each Crab.
-        if (isTouching(Crab.class) == true && crab.crabLives > 0 && delayTimer.millisElapsed() > 2000 ) {
+        if (isTouching(Crab.class) == true && crab.crabLives > 0 && delayTimer.millisElapsed() > 1500 ) {
             removeTouching(Crab.class);
             CrabWorld crabWorld = (CrabWorld) getWorld();
             crabWorld.decreaseLivesCounter();
             crabWorld.addObject(new Crab(crab.crabLives-1), this.getX(), this.getY());
             delayTimer.mark();  // Starts Timer
         }
-        else if (isTouching(Crab.class) == true && crab.crabLives == 0 && delayTimer.millisElapsed() > 2000 )    {
+        else if (isTouching(Crab.class) == true && crab.crabLives == 0 && delayTimer.millisElapsed() > 1500 )    {
             removeTouching(Crab.class);
             CrabWorld.gameOver();   // not implemented yet
             Greenfoot.stop();       

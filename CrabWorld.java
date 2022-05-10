@@ -1,3 +1,4 @@
+import java.util.*;
 import greenfoot.*; // (Actor, World, Greenfoot, GreenfootImage)
 
 /**
@@ -10,14 +11,17 @@ public class CrabWorld extends World {
     private static int worldWidth = 600;
     private static int worldHeight = 600;
     private static int amount = 8;
-    public static int wormAmount = 5;
-    public static int lobsterAmount = 2;
+    private static int wormAmount;
     public int scoreValue;
     public int livesValue = 3;
+    private int level = 0;
 
+    SimpleTimer timeElapsed = new SimpleTimer();
     Counter score = new Counter(scoreValue);
     Crab crab = new Crab(livesValue);
     Counter lives = new Counter(livesValue);
+    Counter timer = new Counter(0);
+
 
     /**
      * Create the crab world (the beach). Our world has a size
@@ -35,43 +39,55 @@ public class CrabWorld extends World {
     {
         score.updateScoreCounter(scoreValue);
         lives.updateLivesCounter(livesValue);
-        if (crab.wormsEaten == wormAmount)  {
-            score.gameFinish();
-        }
-
+        double timeElapsedDeci = timeElapsed.millisElapsed();
+        timer.updateTimeCounter(timeElapsedDeci/1000);
+        progress();
+        
     }
 
 
     public void populate() 
     {
         addObject(crab, 250, 250);
-        spawnWorms();
-        spawnLobsters();
+        nextLevel();
+        // level1();
         spawnScoreCounter();
         spawnLivesCounter();
-
-
-        // System.out.println(worldWidth);
-        // System.out.println(worldHeight);
+        spawnTimerCounter();
+        Lobster.speed = 2;
     }
 
-    public void spawnWorms()
+    public void progress()
     {
-        for (int i = 0; i < wormAmount; i++)    {
+        if (Crab.wormsEaten == wormAmount)  {
+            List lobsterList = getObjects(Lobster.class);
+            removeObjects(lobsterList);
+            nextLevel();
+            Crab.wormsEaten = 0;
+            // System.out.println("Worms: " + wormAmount);
+            // System.out.println("Level: " + level);
+            Greenfoot.delay(50);
+
+        }
+    }
+
+    public void spawnWorms(int amount)
+    {
+        for (int i = 0; i < amount; i++)    {
             addObject(new Worm(i), generator("Width"), generator("Height"));
         }
     }
 
-    public void spawnLobsters()
+    public void spawnLobsters(int amount)
     {
-        for (int i = 0; i < lobsterAmount; i++) {
+        for (int i = 0; i < amount; i++) {
             addObject(new Lobster(i, generator("rotation")), generator("Width"), generator("Height"));
         }
     }
 
     public void spawnScoreCounter()
     {
-        crab.wormsEaten = 0;
+        Crab.wormsEaten = 0;
         addObject(score, 50, 20);
     }
 
@@ -91,18 +107,64 @@ public class CrabWorld extends World {
         livesValue--;
     }
 
+    public void spawnTimerCounter()
+    {
+        addObject(timer, getWidth() / 2, 20);
+    }
 
     /**
      * TODO level system
      */
-    public void nextLevel(int level)
-    {
-        if (level == 1)  {
-            for (int i = 0; i < 5; i++ )    {
-
-            }
+    public void nextLevel()
+    {   
+        if (level == 0) {
+            wormAmount = 3;
+            spawnWorms(wormAmount);
+            spawnLobsters(2);
+            level++;    
+        }
+        else if (level == 1) {
+            wormAmount = 4;
+            spawnWorms(wormAmount);
+            spawnLobsters(2);
+            level++;    
+        }
+        else if (level == 2)    {
+            wormAmount = 5;
+            spawnWorms(wormAmount);
+            spawnLobsters(3);
+            level++;
+        }
+        else if (level == 3)    {
+            wormAmount = 6;
+            spawnWorms(wormAmount);
+            spawnLobsters(4);
+            level++;
+        }
+        else if (level == 4)    {
+            wormAmount = 6;
+            Lobster.speed = 4;
+            spawnWorms(wormAmount);
+            spawnLobsters(5);
+            level++;
+        }
+        else if (level == 5)    {
+            wormAmount = 8;
+            Lobster.speed = 5;
+            spawnWorms(wormAmount);
+            spawnLobsters(7);
+            level++;
+        }
+        else if (level == 6)    {
+            wormAmount = 10;
+            Lobster.speed = 6;
+            spawnWorms(wormAmount);
+            spawnLobsters(8);
+            level++;
         }
     }
+
+
 
     /**
      * Generates random numbers based on the type of need (input String).
