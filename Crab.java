@@ -1,4 +1,4 @@
-import greenfoot.*;
+    import greenfoot.*;
 
 /**
  * Write a description of class Crab here.
@@ -15,10 +15,11 @@ public class Crab extends Actor
     /**
      * Constructor
      */
-    public Crab(int lives)
+    public Crab(int lives, int rotation)
     {
         crabSpeed = 3;
         crabLives += lives;
+        setRotation(rotation);
         // wormsEaten = 0;
 
     }
