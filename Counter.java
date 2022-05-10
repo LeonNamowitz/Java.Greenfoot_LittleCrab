@@ -32,4 +32,9 @@ public class Counter extends Actor
     {
         setImage(new GreenfootImage("Lives: " + newLives, 24, Color.GREEN, Color.BLACK));
     }
+
+    public void updateTimeCounter(int newTime)
+    {
+        setImage(new GreenfootImage("Time: " + newTime, 24, Color.WHITE, Color.DARK_GRAY ));
+    }
 }

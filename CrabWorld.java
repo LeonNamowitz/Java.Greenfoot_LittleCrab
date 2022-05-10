@@ -11,15 +11,17 @@ public class CrabWorld extends World {
     private static int worldWidth = 600;
     private static int worldHeight = 600;
     private static int amount = 8;
-    private static int wormAmount = 3;
-    private int lobsterAmount = 2;
+    private static int wormAmount;
     public int scoreValue;
     public int livesValue = 3;
-    private int level = 1;
+    private int level = 0;
 
+    SimpleTimer timeElapsed = new SimpleTimer();
     Counter score = new Counter(scoreValue);
     Crab crab = new Crab(livesValue);
     Counter lives = new Counter(livesValue);
+    Counter timer = new Counter(0);
+
 
     /**
      * Create the crab world (the beach). Our world has a size
@@ -37,6 +39,7 @@ public class CrabWorld extends World {
     {
         score.updateScoreCounter(scoreValue);
         lives.updateLivesCounter(livesValue);
+        timer.updateTimeCounter(timeElapsed.millisElapsed()/1000);
         progress();
         
     }
@@ -45,11 +48,13 @@ public class CrabWorld extends World {
     public void populate() 
     {
         addObject(crab, 250, 250);
-        spawnWorms(wormAmount);
-        spawnLobsters(lobsterAmount);
+        // spawnWorms(wormAmount);
+        // spawnLobsters(lobsterAmount);
+        nextLevel();
         // level1();
         spawnScoreCounter();
         spawnLivesCounter();
+        spawnTimerCounter();
         Lobster.speed = 2;
     }
 
@@ -62,7 +67,7 @@ public class CrabWorld extends World {
             Crab.wormsEaten = 0;
             System.out.println("Worms: " + wormAmount);
             System.out.println("Level: " + level);
-            Greenfoot.delay(150);
+            Greenfoot.delay(50);
 
         }
     }
@@ -103,18 +108,27 @@ public class CrabWorld extends World {
         livesValue--;
     }
 
+    public void spawnTimerCounter()
+    {
+        addObject(timer, getWidth() / 2, 20);
+    }
 
     /**
      * TODO level system
      */
     public void nextLevel()
-    {
-        if (level == 1) {
+    {   
+        if (level == 0) {
+            wormAmount = 3;
+            spawnWorms(wormAmount);
+            spawnLobsters(2);
+            level++;    
+        }
+        else if (level == 1) {
             wormAmount = 4;
             spawnWorms(wormAmount);
             spawnLobsters(2);
-            level++;
-            
+            level++;    
         }
         else if (level == 2)    {
             wormAmount = 5;
