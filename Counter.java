@@ -37,6 +37,6 @@ public class Counter extends Actor
 
     public void updateTimeCounter(double newTime)
     {
-        setImage(new GreenfootImage("Time: " + tests.format(newTime) + " ss", 24, Color.WHITE, Color.DARK_GRAY ));
+        setImage(new GreenfootImage("Time: " + tests.format(newTime) + " s", 24, Color.WHITE, Color.DARK_GRAY ));
     }
 }

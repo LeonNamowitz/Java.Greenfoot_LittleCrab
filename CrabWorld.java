@@ -39,9 +39,8 @@ public class CrabWorld extends World {
     {
         score.updateScoreCounter(scoreValue);
         lives.updateLivesCounter(livesValue);
-        double test = timeElapsed.millisElapsed();
-    
-        timer.updateTimeCounter(test/1000);
+        double timeElapsedDeci = timeElapsed.millisElapsed();
+        timer.updateTimeCounter(timeElapsedDeci/1000);
         progress();
         
     }
@@ -50,8 +49,6 @@ public class CrabWorld extends World {
     public void populate() 
     {
         addObject(crab, 250, 250);
-        // spawnWorms(wormAmount);
-        // spawnLobsters(lobsterAmount);
         nextLevel();
         // level1();
         spawnScoreCounter();
