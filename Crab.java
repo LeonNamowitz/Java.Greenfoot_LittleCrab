@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public class Crab extends Actor
 {   
-    public int wormsEaten = 0;
+    public static int wormsEaten = 0;
     public int crabSpeed;
     public int crabLives;
 
@@ -19,7 +19,7 @@ public class Crab extends Actor
     {
         crabSpeed = 3;
         crabLives += lives;
-        wormsEaten = 0;
+        // wormsEaten = 0;
 
     }
 
@@ -65,8 +65,8 @@ public class Crab extends Actor
             removeTouching(Worm.class);
             CrabWorld crabWorld = (CrabWorld) getWorld();
             crabWorld.increaseScoreCounter();
-            wormsEaten++;
-            
+            Crab.wormsEaten++;
+            // System.out.println(Crab.wormsEaten);
             // getWorld().addObject(new Counter(1), 10, 10);    //Why is this working??
         }
     }  

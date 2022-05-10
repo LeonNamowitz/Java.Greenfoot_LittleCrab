@@ -1,5 +1,4 @@
-import java.io.ObjectInputStream.GetField;
-
+// import java.io.ObjectInputStream.GetField;
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -15,6 +14,7 @@ public class Lobster extends Actor
     private int moveSteps = 0;
     private int moveTime = CrabWorld.generator("lobsterMoveTime");
     private static int respawnDelay = 3;
+    public static int speed = 2;
     SimpleTimer delayTimer = new SimpleTimer();
 
 
@@ -50,7 +50,7 @@ public class Lobster extends Actor
             turn(20);
         }
         if (moveSteps < moveTime) {
-            move(2);
+            move(speed);
             moveSteps++;
             
         }
@@ -70,7 +70,7 @@ public class Lobster extends Actor
                 turn(20);
         }
         if (moveSteps < moveTime) {
-            move(2);
+            move(speed);
             moveSteps++;
             
         }
