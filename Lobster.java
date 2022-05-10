@@ -14,6 +14,7 @@ public class Lobster extends Actor
     private int defaultRotation;
     private int moveSteps = 0;
     private int moveTime = CrabWorld.generator("lobsterMoveTime");
+    private static int respawnDelay = 3;
 
     /**
      * Constructor
@@ -34,6 +35,8 @@ public class Lobster extends Actor
         // randomMove();
         naturalMove();
         eatCrab();
+        decreaseRespawnDelay();
+        // System.out.println(respawnDelay);
     }
 
     /**
@@ -75,6 +78,19 @@ public class Lobster extends Actor
             moveTime = CrabWorld.generator("lobsterMoveTime");
         }  
     }
+
+    /**
+     * Jank invinciblility after respawn. Based on act() calls, therefore dependent on speed slider.
+     */
+    private void decreaseRespawnDelay()
+    {
+        if (respawnDelay > 0)  {
+            respawnDelay--;
+        }
+        else if (respawnDelay == 0) {
+            
+        }
+    }
     
     /**
      * Removes the Crab and decreases the Lives of the player.
@@ -86,17 +102,21 @@ public class Lobster extends Actor
     {
         Crab crab = (Crab) getOneIntersectingObject(Crab.class);
 
-        if (isTouching(Crab.class) == true && crab.crabLives > 0 ) {
-            removeTouching(Crab.class);
-            CrabWorld crabWorld = (CrabWorld) getWorld();
-            crabWorld.decreaseLivesCounter();
-            crabWorld.addObject(new Crab(crab.crabLives-1), this.getX(), this.getY()-100);
-            // Greenfoot.stop();
-        }
-        else if (isTouching(Crab.class) == true && crab.crabLives == 0 )    {
-            removeTouching(Crab.class);
-            CrabWorld.gameOver();   // not implemented yet
-            Greenfoot.stop();       
+        if (respawnDelay == 0)   {
+            if (isTouching(Crab.class) == true && crab.crabLives > 0 ) {
+                removeTouching(Crab.class);
+                CrabWorld crabWorld = (CrabWorld) getWorld();
+                crabWorld.decreaseLivesCounter();
+                crabWorld.addObject(new Crab(crab.crabLives-1), this.getX(), this.getY());
+                respawnDelay = 400;
+                System.out.println(respawnDelay);
+                // Greenfoot.stop();
+            }
+            else if (isTouching(Crab.class) == true && crab.crabLives == 0 )    {
+                removeTouching(Crab.class);
+                CrabWorld.gameOver();   // not implemented yet
+                Greenfoot.stop();       
+            }
         }
     }  
 }
