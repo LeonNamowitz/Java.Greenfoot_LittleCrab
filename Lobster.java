@@ -14,7 +14,7 @@ public class Lobster extends Actor
     private int moveTime = CrabWorld.generator("lobsterMoveTime");
     public static int speed = 2;
     SimpleTimer delayTimer = new SimpleTimer();
-
+    PopUp popUp = new PopUp();
 
     /**
      * Constructor
@@ -100,7 +100,10 @@ public class Lobster extends Actor
             CrabWorld crabWorld = (CrabWorld) getWorld();
             crabWorld.decreaseLivesCounter();
             crabWorld.changeScoreCounter(-150);
-            Greenfoot.delay(60);
+            crabWorld.addObject(popUp, crabWorld.getWidth()/2, crabWorld.getHeight()/2);
+            popUp.lifeLost(crab.crabLives-1);
+            Greenfoot.delay(80);
+            crabWorld.removeObject(popUp);
             crabWorld.addObject(new Crab((crab.crabLives-1), lastRotation), lastX, lastY);
             delayTimer.mark();  // Starts Timer
         }
