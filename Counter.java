@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.text.DecimalFormat;
 
 /**
  * Write a description of class Counter here.
@@ -9,6 +10,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Counter extends Actor
 {
     int value = 0;
+    DecimalFormat tests = new DecimalFormat("0.00");
 
     public Counter(int value)
     {
@@ -33,8 +35,8 @@ public class Counter extends Actor
         setImage(new GreenfootImage("Lives: " + newLives, 24, Color.GREEN, Color.BLACK));
     }
 
-    public void updateTimeCounter(int newTime)
+    public void updateTimeCounter(double newTime)
     {
-        setImage(new GreenfootImage("Time: " + newTime, 24, Color.WHITE, Color.DARK_GRAY ));
+        setImage(new GreenfootImage("Time: " + tests.format(newTime) + " ss", 24, Color.WHITE, Color.DARK_GRAY ));
     }
 }

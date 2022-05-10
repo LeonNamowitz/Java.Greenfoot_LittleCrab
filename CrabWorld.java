@@ -39,7 +39,9 @@ public class CrabWorld extends World {
     {
         score.updateScoreCounter(scoreValue);
         lives.updateLivesCounter(livesValue);
-        timer.updateTimeCounter(timeElapsed.millisElapsed()/1000);
+        double test = timeElapsed.millisElapsed();
+    
+        timer.updateTimeCounter(test/1000);
         progress();
         
     }
@@ -65,8 +67,8 @@ public class CrabWorld extends World {
             removeObjects(lobsterList);
             nextLevel();
             Crab.wormsEaten = 0;
-            System.out.println("Worms: " + wormAmount);
-            System.out.println("Level: " + level);
+            // System.out.println("Worms: " + wormAmount);
+            // System.out.println("Level: " + level);
             Greenfoot.delay(50);
 
         }
