@@ -109,7 +109,7 @@ public class Lobster extends Actor
                 crabWorld.decreaseLivesCounter();
                 crabWorld.addObject(new Crab(crab.crabLives-1), this.getX(), this.getY());
                 respawnDelay = 400;
-                System.out.println(respawnDelay);
+                // System.out.println(respawnDelay);
                 // Greenfoot.stop();
             }
             else if (isTouching(Crab.class) == true && crab.crabLives == 0 )    {
