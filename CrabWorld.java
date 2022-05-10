@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.*;
 import greenfoot.*; // (Actor, World, Greenfoot, GreenfootImage)
 
 /**
@@ -38,7 +38,7 @@ public class CrabWorld extends World {
         score.updateScoreCounter(scoreValue);
         lives.updateLivesCounter(livesValue);
         progress();
-
+        
     }
 
 
@@ -56,13 +56,13 @@ public class CrabWorld extends World {
     public void progress()
     {
         if (Crab.wormsEaten == wormAmount)  {
-            List lobsterList;
-            // getObjects(<);
-            // removeObjects(Lobster.class);
+            List lobsterList = getObjects(Lobster.class);
+            removeObjects(lobsterList);
             nextLevel();
             Crab.wormsEaten = 0;
             System.out.println("Worms: " + wormAmount);
             System.out.println("Level: " + level);
+            Greenfoot.delay(150);
 
         }
     }
@@ -137,14 +137,14 @@ public class CrabWorld extends World {
         }
         else if (level == 5)    {
             wormAmount = 8;
-            Lobster.speed++;
+            Lobster.speed = 5;
             spawnWorms(wormAmount);
             spawnLobsters(7);
             level++;
         }
         else if (level == 6)    {
             wormAmount = 10;
-            Lobster.speed++;
+            Lobster.speed = 6;
             spawnWorms(wormAmount);
             spawnLobsters(8);
             level++;

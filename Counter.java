@@ -22,13 +22,6 @@ public class Counter extends Actor
         // Counter updating happens in CrabWorld act() method.        
     }
 
-    /**
-     * Checks if all the Worms have been eaten and ends the Game.
-     */
-    public void gameFinish()
-    {
-        Greenfoot.stop();
-    }
 
     public void updateScoreCounter(int newScore)
     {
