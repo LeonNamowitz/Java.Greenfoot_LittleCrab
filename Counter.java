@@ -19,9 +19,7 @@ public class Counter extends Actor
      */
     public void act()
     {
-        // setImage(new GreenfootImage("Score: " + score, 24, Color.WHITE, Color.BLACK));
-        // gameFinish();
-        
+        // Counter updating happens in CrabWorld act() method.        
     }
 
     /**
@@ -32,8 +30,13 @@ public class Counter extends Actor
         Greenfoot.stop();
     }
 
-    public void updateCounter(int newScore)
+    public void updateScoreCounter(int newScore)
     {
         setImage(new GreenfootImage("Score: " + newScore, 24, Color.WHITE, Color.BLACK));
+    }
+
+    public void updateLivesCounter(int newLives)
+    {
+        setImage(new GreenfootImage("Lives: " + newLives, 24, Color.GREEN, Color.BLACK));
     }
 }

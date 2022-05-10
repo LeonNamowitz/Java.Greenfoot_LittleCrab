@@ -13,10 +13,10 @@ public class CrabWorld extends World {
     public static int wormAmount = 5;
     public static int lobsterAmount = 2;
     public int scoreValue;
-    public int livesValue;
+    public int livesValue = 3;
 
     Counter score = new Counter(scoreValue);
-    Crab crab = new Crab(3);
+    Crab crab = new Crab(livesValue);
     Counter lives = new Counter(livesValue);
 
     /**
@@ -33,7 +33,8 @@ public class CrabWorld extends World {
 
     public void act()
     {
-        score.updateCounter(scoreValue);
+        score.updateScoreCounter(scoreValue);
+        lives.updateLivesCounter(livesValue);
         if (crab.wormsEaten == wormAmount)  {
             score.gameFinish();
         }
@@ -70,9 +71,7 @@ public class CrabWorld extends World {
 
     public void spawnScoreCounter()
     {
-        // Score score = new Score(0);
         crab.wormsEaten = 0;
-        // score.value = 0;
         addObject(score, 50, 20);
     }
 
@@ -83,15 +82,15 @@ public class CrabWorld extends World {
 
     public void spawnLivesCounter()
     {
-        // Score lives = new Score(3);
-        // lives.value = 0;
+        // crab.crabLives = livesValue;
         addObject(lives, getWidth() - 50, 20);
     }
 
-    public void nextLive()
+    public void decreaseLivesCounter()
     {
-        addObject(new Crab(crab.crabLives-1), getWidth()/2, getHeight()/2);
+        livesValue--;
     }
+
 
     /**
      * TODO level system

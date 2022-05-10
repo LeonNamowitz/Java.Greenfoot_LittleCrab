@@ -27,5 +27,5 @@ comment7.target=void\ increaseScoreCounter()
 comment8.params=
 comment8.target=void\ spawnLivesCounter()
 comment9.params=
-comment9.target=void\ nextLive()
+comment9.target=void\ decreaseLivesCounter()
 numComments=13

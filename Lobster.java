@@ -1,3 +1,5 @@
+import java.io.ObjectInputStream.GetField;
+
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -74,14 +76,21 @@ public class Lobster extends Actor
         }  
     }
     
+    /**
+     * Removes the Crab and decreases the Lives of the player.
+     * You need to "typecast" (inform the compiler) where it can find the method of the subclass of the World.
+     * typcast the current Crab object into the Crab variable crab to check the current lives. (I think..)
+     * Score and Lives variables are held in CrabWorld. 
+     */
     public void eatCrab()
     {
-        World myWorld = getWorld();
-        Crab crab = new Crab(1);
+        Crab crab = (Crab) getOneIntersectingObject(Crab.class);
+
         if (isTouching(Crab.class) == true && crab.crabLives > 0 ) {
             removeTouching(Crab.class);
-            // myWorld.nextLive();
-            myWorld.addObject(new Crab(crab.crabLives-1), this.getX(), this.getY()-100);
+            CrabWorld crabWorld = (CrabWorld) getWorld();
+            crabWorld.decreaseLivesCounter();
+            crabWorld.addObject(new Crab(crab.crabLives-1), this.getX(), this.getY()-100);
             // Greenfoot.stop();
         }
         else if (isTouching(Crab.class) == true && crab.crabLives == 0 )    {

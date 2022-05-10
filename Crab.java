@@ -18,7 +18,7 @@ public class Crab extends Actor
     public Crab(int lives)
     {
         crabSpeed = 3;
-        crabLives = lives;
+        crabLives += lives;
         wormsEaten = 0;
 
     }
@@ -44,6 +44,12 @@ public class Crab extends Actor
         
         if (Greenfoot.isKeyDown("down"))
             move(-crabSpeed);
+    }
+
+    // Not in use.
+    public int checkLives()
+    {
+        return(crabLives);
     }
 
 
