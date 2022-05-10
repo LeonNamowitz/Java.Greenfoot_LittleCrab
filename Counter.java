@@ -10,7 +10,7 @@ import java.text.DecimalFormat;
 public class Counter extends Actor
 {
     int value = 0;
-    DecimalFormat tests = new DecimalFormat("0.00");
+    DecimalFormat timeFormat = new DecimalFormat("0.00");
 
     public Counter(int value)
     {
@@ -37,6 +37,6 @@ public class Counter extends Actor
 
     public void updateTimeCounter(double newTime)
     {
-        setImage(new GreenfootImage("Time: " + tests.format(newTime) + " s", 24, Color.WHITE, Color.DARK_GRAY ));
+        setImage(new GreenfootImage("Time: " + timeFormat.format(newTime) + " s", 24, Color.WHITE, Color.DARK_GRAY ));
     }
 }
