@@ -15,7 +15,7 @@ public class Lobster extends Actor
     private int moveSteps = 0;
     private int moveTime = CrabWorld.generator("lobsterMoveTime");
     private static int respawnDelay = 3;
-    SimpleTimer timer = new SimpleTimer();
+    SimpleTimer delayTimer = new SimpleTimer();
 
 
     /**
@@ -37,9 +37,7 @@ public class Lobster extends Actor
         // randomMove();
         naturalMove();
         eatCrab();
-        decreaseRespawnDelay();
-        // System.out.println(respawnDelay);
-        System.out.println((timer.millisElapsed()));
+        System.out.println(delayTimer.millisElapsed());
 
     }
 
@@ -105,23 +103,21 @@ public class Lobster extends Actor
     public void eatCrab()
     {
         Crab crab = (Crab) getOneIntersectingObject(Crab.class);
-        timer.mark();
-        if (timer.millisElapsed() < 2000)   {
-            timer.mark();
-            if (isTouching(Crab.class) == true && crab.crabLives > 0 ) {
-                removeTouching(Crab.class);
-                CrabWorld crabWorld = (CrabWorld) getWorld();
-                crabWorld.decreaseLivesCounter();
-                crabWorld.addObject(new Crab(crab.crabLives-1), this.getX(), this.getY()+100);
-                // respawnDelay = 400;
-                timer.mark();
-            }
-            else if (isTouching(Crab.class) == true && crab.crabLives == 0 )    {
-                removeTouching(Crab.class);
-                CrabWorld.gameOver();   // not implemented yet
-                Greenfoot.stop();       
-            }
+        
+        // 2 Second delay on respawn, independent for each Crab.
+        if (isTouching(Crab.class) == true && crab.crabLives > 0 && delayTimer.millisElapsed() > 2000 ) {
+            removeTouching(Crab.class);
+            CrabWorld crabWorld = (CrabWorld) getWorld();
+            crabWorld.decreaseLivesCounter();
+            crabWorld.addObject(new Crab(crab.crabLives-1), this.getX(), this.getY());
+            delayTimer.mark();  // Starts Timer
         }
+        else if (isTouching(Crab.class) == true && crab.crabLives == 0 && delayTimer.millisElapsed() > 2000 )    {
+            removeTouching(Crab.class);
+            CrabWorld.gameOver();   // not implemented yet
+            Greenfoot.stop();       
+        }
+        
     }  
 }
 
