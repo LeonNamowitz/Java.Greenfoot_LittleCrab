@@ -1,11 +1,10 @@
 
 
 * enter name as highscore ?
-* endless level
+* 
 * calculate score with Time
 
 
 BUGS
 
-* respawn invinc not global
-	fix	-> move timer to CrabWorld 
+* worms spawning under counters
