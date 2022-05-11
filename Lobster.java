@@ -1,4 +1,4 @@
-// import java.io.ObjectInputStream.GetField;
+    // import java.io.ObjectInputStream.GetField;
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -13,8 +13,7 @@ public class Lobster extends Actor
     private int moveSteps = 0;
     private int moveTime = CrabWorld.generator("lobsterMoveTime");
     public static int speed = 2;
-    SimpleTimer delayTimer = new SimpleTimer();
-
+    public static SimpleTimer delayTimer = new SimpleTimer();
 
     /**
      * Constructor
@@ -35,8 +34,6 @@ public class Lobster extends Actor
         // randomMove();
         naturalMove();
         eatCrab();
-        // System.out.println(delayTimer.millisElapsed());
-
     }
 
     /**
@@ -85,31 +82,44 @@ public class Lobster extends Actor
      * You need to "typecast" (inform the compiler) where it can find the method of the subclass of the World.
      * typcast the current Crab object into the Crab variable crab to check the current lives. (I think..)
      * Score and Lives variables are held in CrabWorld. 
-     * 1,5 seconds invincible after (re)spawning.
+     * 1-2 seconds invincible after (re)spawning.
      */
     public void eatCrab()
     {
         Crab crab = (Crab) getOneIntersectingObject(Crab.class);
+        CrabWorld crabWorld = (CrabWorld) getWorld();
         
         // 1,8 Second delay on respawn, independent for each Crab.
-        if (isTouching(Crab.class) == true && crab.crabLives > 0 && delayTimer.millisElapsed() > 1800 ) {
+        if (isTouching(Crab.class) == true && crab.crabLives > 0 && delayTimer.millisElapsed() > 2000 ) {
             int lastRotation = crab.getRotation();
             int lastX = crab.getX();
             int lastY = crab.getY();
+            PopUp livesPopUp = new PopUp("lifeLost", crab.crabLives-1);
+
             removeTouching(Crab.class);
-            CrabWorld crabWorld = (CrabWorld) getWorld();
             crabWorld.decreaseLivesCounter();
             crabWorld.changeScoreCounter(-150);
-            Greenfoot.delay(60);
+            crabWorld.addObject(livesPopUp, crabWorld.getWidth()/2, crabWorld.getHeight()/2);
+            Greenfoot.delay(80);
+            crabWorld.removeObject(livesPopUp);
             crabWorld.addObject(new Crab((crab.crabLives-1), lastRotation), lastX, lastY);
             delayTimer.mark();  // Starts Timer
         }
-        else if (isTouching(Crab.class) == true && crab.crabLives == 0 && delayTimer.millisElapsed() > 1800 )    {
+        else if (isTouching(Crab.class) == true && crab.crabLives == 0 && delayTimer.millisElapsed() > 2000 )    {
             removeTouching(Crab.class);
-            CrabWorld.gameOver();   // not implemented yet
-            Greenfoot.stop();       
+            int finalScore = finalScore();
+            PopUp endPopUp = new PopUp("gameOver", finalScore);
+
+            crabWorld.addObject(endPopUp, crabWorld.getWidth()/2, crabWorld.getHeight()/2);
+            // Greenfoot.stop(); 
         }
-        
     }  
+
+    public int finalScore()
+    {
+        CrabWorld crabWorld = (CrabWorld) getWorld();
+        int wormScore = crabWorld.scoreValue;
+        return wormScore;
+    }
 }
 

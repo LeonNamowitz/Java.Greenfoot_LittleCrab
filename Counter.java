@@ -11,6 +11,7 @@ public class Counter extends Actor
 {
     int value = 0;
     DecimalFormat timeFormat = new DecimalFormat("0.00");
+    public static double lastTime;
 
     public Counter(int value)
     {
@@ -45,6 +46,12 @@ public class Counter extends Actor
         GreenfootImage img = new GreenfootImage("Time: " + timeFormat.format(newTime) + " s", 24, Color.WHITE, Color.DARK_GRAY );
         img.scale(123, 25);
         setImage(img);
+        lastTime = newTime;
+    }
+
+    public static double returnTime()
+    {
+        return(lastTime);
     }
 
     public void updateLevelCounter(int newLevel)

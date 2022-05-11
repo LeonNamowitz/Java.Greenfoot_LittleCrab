@@ -1,12 +1,10 @@
 
 
-* Scoring system
-* different score for eating or death
+* enter name as highscore ?
 * 
-* Game endscreen with highscore ?
-
+* calculate score with Time
 
 
 BUGS
 
-* 
+* worms spawning under counters
