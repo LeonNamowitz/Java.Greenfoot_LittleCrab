@@ -14,8 +14,6 @@ public class Lobster extends Actor
     private int moveTime = CrabWorld.generator("lobsterMoveTime");
     public static int speed = 2;
     public static SimpleTimer delayTimer = new SimpleTimer();
-    // PopUp livesPopUp = new PopUp();
-    // PopUp gameOverPopUp = new PopUp();
 
     /**
      * Constructor
@@ -36,8 +34,6 @@ public class Lobster extends Actor
         // randomMove();
         naturalMove();
         eatCrab();
-        // System.out.println(delayTimer.millisElapsed());
-
     }
 
     /**
@@ -86,7 +82,7 @@ public class Lobster extends Actor
      * You need to "typecast" (inform the compiler) where it can find the method of the subclass of the World.
      * typcast the current Crab object into the Crab variable crab to check the current lives. (I think..)
      * Score and Lives variables are held in CrabWorld. 
-     * 1,5 seconds invincible after (re)spawning.
+     * 1-2 seconds invincible after (re)spawning.
      */
     public void eatCrab()
     {
@@ -94,7 +90,7 @@ public class Lobster extends Actor
         CrabWorld crabWorld = (CrabWorld) getWorld();
         
         // 1,8 Second delay on respawn, independent for each Crab.
-        if (isTouching(Crab.class) == true && crab.crabLives > 0 && delayTimer.millisElapsed() > 1800 ) {
+        if (isTouching(Crab.class) == true && crab.crabLives > 0 && delayTimer.millisElapsed() > 2000 ) {
             int lastRotation = crab.getRotation();
             int lastX = crab.getX();
             int lastY = crab.getY();
@@ -109,13 +105,13 @@ public class Lobster extends Actor
             crabWorld.addObject(new Crab((crab.crabLives-1), lastRotation), lastX, lastY);
             delayTimer.mark();  // Starts Timer
         }
-        else if (isTouching(Crab.class) == true && crab.crabLives == 0 && delayTimer.millisElapsed() > 1800 )    {
+        else if (isTouching(Crab.class) == true && crab.crabLives == 0 && delayTimer.millisElapsed() > 2000 )    {
             removeTouching(Crab.class);
             int finalScore = finalScore();
             PopUp endPopUp = new PopUp("gameOver", finalScore);
 
             crabWorld.addObject(endPopUp, crabWorld.getWidth()/2, crabWorld.getHeight()/2);
-            Greenfoot.stop(); 
+            // Greenfoot.stop(); 
         }
     }  
 

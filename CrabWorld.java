@@ -71,6 +71,7 @@ public class CrabWorld extends World
             List lobsterList = getObjects(Lobster.class);
             removeObjects(lobsterList);
             nextLevel();
+            Lobster.delayTimer.mark();
             Crab.wormsEaten = 0;
             PopUp levelPopUp = new PopUp("nextLevel", levelValue);
             addObject(levelPopUp, getWidth()/2, getHeight()/2);
@@ -176,6 +177,13 @@ public class CrabWorld extends World
             Lobster.speed = 6;
             spawnWorms(wormAmount);
             spawnLobsters(8);
+            levelValue++;
+        }
+        else if (levelValue >= 7)   {
+            wormAmount = (levelValue + 3);
+            Lobster.speed = 6;
+            spawnWorms(wormAmount);
+            spawnLobsters(levelValue + 2);
             levelValue++;
         }
     }
