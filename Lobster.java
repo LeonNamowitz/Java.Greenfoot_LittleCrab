@@ -1,4 +1,4 @@
-// import java.io.ObjectInputStream.GetField;
+    // import java.io.ObjectInputStream.GetField;
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -13,8 +13,9 @@ public class Lobster extends Actor
     private int moveSteps = 0;
     private int moveTime = CrabWorld.generator("lobsterMoveTime");
     public static int speed = 2;
-    SimpleTimer delayTimer = new SimpleTimer();
-    PopUp popUp = new PopUp();
+    public static SimpleTimer delayTimer = new SimpleTimer();
+    // PopUp livesPopUp = new PopUp();
+    // PopUp gameOverPopUp = new PopUp();
 
     /**
      * Constructor
@@ -90,29 +91,39 @@ public class Lobster extends Actor
     public void eatCrab()
     {
         Crab crab = (Crab) getOneIntersectingObject(Crab.class);
+        CrabWorld crabWorld = (CrabWorld) getWorld();
         
         // 1,8 Second delay on respawn, independent for each Crab.
         if (isTouching(Crab.class) == true && crab.crabLives > 0 && delayTimer.millisElapsed() > 1800 ) {
             int lastRotation = crab.getRotation();
             int lastX = crab.getX();
             int lastY = crab.getY();
+            PopUp livesPopUp = new PopUp("lifeLost", crab.crabLives-1);
+
             removeTouching(Crab.class);
-            CrabWorld crabWorld = (CrabWorld) getWorld();
             crabWorld.decreaseLivesCounter();
             crabWorld.changeScoreCounter(-150);
-            crabWorld.addObject(popUp, crabWorld.getWidth()/2, crabWorld.getHeight()/2);
-            popUp.lifeLost(crab.crabLives-1);
+            crabWorld.addObject(livesPopUp, crabWorld.getWidth()/2, crabWorld.getHeight()/2);
             Greenfoot.delay(80);
-            crabWorld.removeObject(popUp);
+            crabWorld.removeObject(livesPopUp);
             crabWorld.addObject(new Crab((crab.crabLives-1), lastRotation), lastX, lastY);
             delayTimer.mark();  // Starts Timer
         }
         else if (isTouching(Crab.class) == true && crab.crabLives == 0 && delayTimer.millisElapsed() > 1800 )    {
             removeTouching(Crab.class);
-            CrabWorld.gameOver();   // not implemented yet
-            Greenfoot.stop();       
+            int finalScore = finalScore();
+            PopUp endPopUp = new PopUp("gameOver", finalScore);
+
+            crabWorld.addObject(endPopUp, crabWorld.getWidth()/2, crabWorld.getHeight()/2);
+            Greenfoot.stop(); 
         }
-        
     }  
+
+    public int finalScore()
+    {
+        CrabWorld crabWorld = (CrabWorld) getWorld();
+        int wormScore = crabWorld.scoreValue;
+        return wormScore;
+    }
 }
 

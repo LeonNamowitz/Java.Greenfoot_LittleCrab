@@ -7,7 +7,8 @@ import greenfoot.*; // (Actor, World, Greenfoot, GreenfootImage)
  * @author Leon Namowitz
  * @version (a version number or a date)
  */
-public class CrabWorld extends World {
+public class CrabWorld extends World 
+{
     private static int worldWidth = 600;
     private static int worldHeight = 600;
     private static int amount = 8;
@@ -30,8 +31,8 @@ public class CrabWorld extends World {
      */
     public CrabWorld() {
         super(worldWidth, worldHeight, 1);
-        setPaintOrder(Crab.class, Lobster.class, Worm.class, Counter.class); // draw order
-        populate();
+        setPaintOrder(PopUp.class, Crab.class, Lobster.class, Worm.class, Counter.class); // draw order
+        prepare();
 
     }
 
@@ -44,11 +45,10 @@ public class CrabWorld extends World {
     }
 
 
-    public void populate() 
+    public void prepare() 
     {
         addObject(crab, 250, 250);
         nextLevel();
-        // level1();
         spawnScoreCounter();
         spawnLivesCounter();
         spawnTimerCounter();
@@ -72,9 +72,10 @@ public class CrabWorld extends World {
             removeObjects(lobsterList);
             nextLevel();
             Crab.wormsEaten = 0;
-            // System.out.println("Worms: " + wormAmount);
-            // System.out.println("Level: " + level);
+            PopUp levelPopUp = new PopUp("nextLevel", levelValue);
+            addObject(levelPopUp, getWidth()/2, getHeight()/2);
             Greenfoot.delay(50);
+            removeObject(levelPopUp);
 
         }
     }
@@ -212,9 +213,5 @@ public class CrabWorld extends World {
         return(0);
     }
 
-    public static void gameOver()
-    {
-
-    }
 
 }
